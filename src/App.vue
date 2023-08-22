@@ -1,17 +1,42 @@
 <script>
   import axios from 'axios';
 
-  axios.get('http://127.0.0.1:8000/api/api')
-  .then(function (response) {                  
-    console.log(response.data);
-  })
-  .catch(function (error) {
-    console.error(error);
-  });
+  
+  export default {
+    data() {
+      return {
+        projects:[],
+      }
+    },
+    methods: {
+      functiontest() {
+        axios.get('http://127.0.0.1:8000/api/api')
+        .then(function (response) {   
+          const data = response.data.result;          
+          this.projects = data;
+          console.log(this.projects);
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+
+      }
+    },
+    mounted() {
+      this.functiontest();
+      
+    }
+  }
   
 </script>
 
 <template>
+
+  <!-- <div
+    v-for="project in projects"
+  >
+    {{ project.name_project }}
+  </div> -->
 
 </template>
 
